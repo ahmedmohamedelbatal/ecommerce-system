@@ -19,5 +19,7 @@ Route::prefix('dashboard')->group(function () {
 
   Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard'); 
+    
+    Route::resource('/categories', App\Http\Controllers\Dashboard\CategoryController::class);
   });
 });
