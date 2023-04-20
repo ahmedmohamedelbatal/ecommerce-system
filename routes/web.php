@@ -16,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->group(function () {
   Auth::routes();
-
+  
   Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard'); 
     
     Route::resource('/categories', App\Http\Controllers\Dashboard\CategoryController::class);
+    
+    Route::resource('/products', App\Http\Controllers\Dashboard\ProductController::class);
+    
+    Route::post('/products/upload-image', [App\Http\Controllers\Dashboard\ProductController::class, 'upload_image'])->name('upload-image');
   });
 });
