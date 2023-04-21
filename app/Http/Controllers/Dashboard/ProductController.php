@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImages;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +17,8 @@ class ProductController extends Controller
 
   public function show(int $id) {
     $product = Product::findorFail($id);
-    return view('dashboard.products.show', compact('product'));
+    $product_images = ProductImages::where('product_id', $id)->get();
+    return view('dashboard.products.show', compact('product', 'product_images'));
   }
 
   public function create() {
@@ -72,22 +74,22 @@ class ProductController extends Controller
     return redirect()->route('products.index');
   }
 
-  public function upload_image(Request $request) {
+  public function upload_images(Request $request) {
     $request->validate([
-      'product_image' => 'required | image | mimes:jpeg,png,jpg,webp',
+      'image_path' => 'required | image | mimes:jpeg,png,jpg,webp',
     ]);
 
     $product = Product::findorFail($request->id);
 
-    if ($request->hasFile('product_image')) {
-      $image = $request->file('product_image')->getClientOriginalName();
-      $path = $request->file('product_image')->storeAs('products', $image, 'public_path');
-    } else {
-      $path = null;
+    if($request->hasFile('image_path')) {
+      $imageName = $request->file('image_path')->getClientOriginalName();
+      $path = $request->file('image_path')->storeAs('products/'.$product->product_name, $imageName, 'public_path');
     }
 
-    $product->update([
-      'product_image' => $path,
+    ProductImages::create([
+      'product_id' => $request->id,
+      'image_name' => $imageName,
+      'image_path' => $path,
     ]);
 
     session()->flash('add', 'Product Image Uploaded Successfully');

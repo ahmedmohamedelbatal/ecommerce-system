@@ -26,12 +26,12 @@
             <div class="col form-group">
               <label>Product Name <span>*</span></label>
               <input class="form-control @error('product_name') is-invalid @enderror" name="product_name" type="text"/>
-              @error('product_name') <p>{{ $message }}</p> @enderror
+              @error('product_name') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
             <div class="col form-group">
               <label>Product Price <span>*</span></label>
               <input class="form-control @error('product_price') is-invalid @enderror" name="product_price" type="number"/>
-              @error('product_price') <p>{{ $message }}</p> @enderror
+              @error('product_price') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
           </div>
           <div class="row">
@@ -43,7 +43,7 @@
                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                 @endforeach
               </select>
-              @error('category_id') <p>{{ $message }}</p> @enderror
+              @error('category_id') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
             <div class="col form-group">
               <label>Product Status <span>*</span></label>
@@ -51,7 +51,7 @@
                 <option value="0">Out Stock</option>
                 <option value="1">In Stock</option>
               </select>
-              @error('product_status') <p>{{ $message }}</p> @enderror
+              @error('product_status') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
           </div>
           <div class="row">

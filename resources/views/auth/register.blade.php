@@ -23,17 +23,17 @@
 										@csrf
 										<div class="form-group">
 											<label>Firstname</label> 												
-											<input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" placeholder="Enter your firstname" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+											<input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" placeholder="Enter your firstname" name="first_name" value="{{ old('first_name') }}" required>
 											@error('first_name') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
 										</div>
 										<div class="form-group">
 											<label>Lastname</label> 												
-											<input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" placeholder="Enter your lastname" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+											<input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" placeholder="Enter your lastname" name="last_name" value="{{ old('last_name') }}" required>
 											@error('last_name') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
 										</div>
 										<div class="form-group">
 											<label>Email Address</label> 												
-											<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email" name="email" value="{{ old('email') }}" required autocomplete="email">
+											<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email" name="email" value="{{ old('email') }}" required>
 											@error('email') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
 										</div>
 										<div class="form-group">

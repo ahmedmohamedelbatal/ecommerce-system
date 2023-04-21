@@ -24,6 +24,6 @@ Route::prefix('dashboard')->group(function () {
     
     Route::resource('/products', App\Http\Controllers\Dashboard\ProductController::class);
     
-    Route::post('/products/upload-image', [App\Http\Controllers\Dashboard\ProductController::class, 'upload_image'])->name('upload-image');
+    Route::post('/products/upload-images', [App\Http\Controllers\Dashboard\ProductController::class, 'upload_images'])->name('upload-images');
   });
 });

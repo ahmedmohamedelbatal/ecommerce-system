@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section('title', 'Product Detail')
+@section('title', 'Product Details')
 @section('css')
 <!---Internal  Prism css-->
 <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto">Product Detail</h4>
+			<h4 class="content-title mb-0 my-auto">Product Details</h4>
 		</div>
 	</div>
 </div>
@@ -47,8 +47,8 @@
                 <div class="tabs-menu1">
                   <!-- Tabs -->
                   <ul class="nav panel-tabs main-nav-line">
-                    <li><a href="#tab4" class="nav-link active" data-toggle="tab">Product Detail</a></li>
-                    <li><a href="#tab6" class="nav-link" data-toggle="tab">Product Image</a></li>
+                    <li><a href="#tab4" class="nav-link active" data-toggle="tab">Product Details</a></li>
+                    <li><a href="#tab6" class="nav-link" data-toggle="tab">Product Images</a></li>
                   </ul>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                             <th style="white-space: nowrap;">Product Status</th>
                             <td style="white-space: nowrap;">@if ($product->product_status == 0) <p class="badge badge-danger">Out Stock</p> @else <p class="badge badge-success">In Stock</p> @endif</td>
                           </tr>
-                          <tr class="" even>
+                          <tr>
                             <th style="white-space: nowrap;">Product Description</th>
                             <td style="white-space: nowrap;"> @if($product->product_description) {{ $product->product_description }} @else Data is not found @endif </td>
                           </tr>
@@ -83,26 +83,26 @@
                       <table class="table center-aligned-table mb-0 table-hover" style="text-align: center;">
                         <thead>
                           <tr class="text-dark">
-                            <th>Product Name</th>
-                            <th>Image Path</th>
+                            <th>Image Name</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($product_images as $product_image)
                           <tr>
-                            <td style="white-space: nowrap;">{{$product->product_name}}</td>
-                            <td style="white-space: nowrap;">@if($product->product_image) images/{{$product->product_image}} @else Image is not found @endif</td>
+                            <td style="white-space: nowrap;">{{$product_image->image_name}}</td>
                             <td style="white-space: nowrap;">
-                              <a class="btn btn-outline-success btn-sm" href="{{asset('images/'.$product->product_image)}}" target="_blank"><i class="fas fa-eye"></i>&nbsp; Show</a>
-                              <a class="btn btn-outline-info btn-sm" href="{{asset('images/'.$product->product_image)}}" download><i class="fas fa-download"></i>&nbsp; Download</a>
+                              <a class="btn btn-outline-success btn-sm" href="{{asset('images/'.$product_image->image_path)}}" target="_blank"><i class="fas fa-eye"></i>&nbsp; Show</a>
+                              <a class="btn btn-outline-info btn-sm" href="{{asset('images/'.$product_image->image_path)}}" download><i class="fas fa-download"></i>&nbsp; Download</a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
 
                     <div class="card-body">
-                      <form method="post" action="{{route('upload-image')}}" enctype="multipart/form-data">
+                      <form method="post" action="{{route('upload-images')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                           <p class="text-danger">Image Format: jpeg, png, jpg, webp</p>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="custom-file">
                               <input type="hidden" name="id" id="id" value="{{$product->id}}">
-                              <input type="file" class="custom-file-input" id="inputGroupFile01" name="product_image" aria-describedby="inputGroupFileAddon01">
+                              <input type="file" class="custom-file-input" id="inputGroupFile01" name="image_path" aria-describedby="inputGroupFileAddon01">
                               <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
                             </div>
                           </div> 

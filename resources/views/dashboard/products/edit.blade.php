@@ -27,32 +27,36 @@
             <div class="col form-group">
               <label>Product Name <span>*</span></label>
               <input class="form-control @error('product_name') is-invalid @enderror" name="product_name" type="text" value="{{$product->product_name}}"/>
-              @error('product_name') <p>{{ $message }}</p> @enderror
+              @error('product_name') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
             <div class="col form-group">
               <label>Product Price <span>*</span></label>
               <input class="form-control @error('product_price') is-invalid @enderror" name="product_price" type="number" value="{{$product->product_price}}"/>
-              @error('product_price') <p>{{ $message }}</p> @enderror
+              @error('product_price') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
           </div>
           <div class="row">
             <div class="col form-group">
               <label>Product Category <span>*</span></label>
               <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                <option disabled selected value>-- select category --</option>
                 @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
                 @endforeach
               </select>
-              @error('category_id') <p>{{ $message }}</p> @enderror
+              @error('category_id') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
             <div class="col form-group">
               <label>Product Status <span>*</span></label>
               <select name="product_status" class="form-control @error('product_status') is-invalid @enderror">
-                <option value="0">Out Stock</option>
+                @if ($product->product_status == 0)
+                <option value="0" selected>Out Stock</option>
                 <option value="1">In Stock</option>
+                @else
+                <option value="0">Out Stock</option>
+                <option value="1" selected>In Stock</option>
+                @endif
               </select>
-              @error('product_status') <p>{{ $message }}</p> @enderror
+              @error('product_status') <strong class="invalid-feedback">{{ $message }}</strong> @enderror
             </div>
           </div>
           <div class="row">
