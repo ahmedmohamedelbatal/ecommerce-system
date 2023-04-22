@@ -11872,7 +11872,7 @@ body {
 .tab-content {
   overflow: hidden; }
   .tab-content img {
-    width: 100%; }
+    width: 400px }
 
 .details {
   display: -webkit-box;
@@ -12117,7 +12117,10 @@ pre {
   color: #bac5d4  !important; }
 
 .pro-img-box img {
-  border: 1px solid #e3e8f7 !important; }
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+ }
 
 .banner {
   background: rgba(109, 110, 243, 0.1);

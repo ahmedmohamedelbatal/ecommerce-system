@@ -30,17 +30,10 @@
       <img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader" />
     </div>
     
-    @include('dashboard.layouts.sidebar')
-
-    <!-- main-content -->
-    <div class="main-content app-content">
-      @include('dashboard.layouts.header')
-      <!-- container -->
-      <div class="container-fluid">
-        @yield('content')
-      </div>
+    <div class="container-fluid">
+      @yield('content')
+      <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
     </div>
-
     <!-- JQuery min js -->
     <script src="{{URL::asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap Bundle js -->
